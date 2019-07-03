@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TerminalRPG.classes;
 using TerminalRPG.characters;
 using TerminalRPG.characters.enemies;
@@ -21,14 +22,26 @@ namespace TerminalRPG
 
             ILocation location = new Lobby();
 
-            if (location.Enemies.Count > 0)
+            while (heroes.Exists(x => x.Health > 0) ||
+                location.NextLocations.Count == 0 && location.Enemies.Count == 0)
             {
-                var e = new Encounter(heroes, location.Enemies);
-                e.Battle();
+                var ex = new Explore(location);
+
+                if (location.Enemies.Count > 0)
+                {
+                    var e = new Encounter(heroes, location.Enemies);
+                    e.Battle();
+                }
+
+                if (location.NextLocations.Count == 0)
+                {
+                    break;
+                }
+
+                location = ex.Move();
             }
 
-            
-
+            System.Console.WriteLine("Game Over...");
         }
     }
 }

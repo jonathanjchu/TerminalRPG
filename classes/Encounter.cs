@@ -6,7 +6,7 @@ using TerminalRPG.characters.heroes;
 
 namespace TerminalRPG.classes
 {
-    public class Encounter
+    public class Encounter : GamePlay
     {
         private Random _rng;
 
@@ -24,13 +24,13 @@ namespace TerminalRPG.classes
         {
             while (this.Enemies.Count > 0 && this.Heroes.Count > 0)
             {
+                System.Console.WriteLine("********************\n\n");
+                
                 HeroesTurn();
 
                 System.Console.WriteLine();
 
                 EnemiesTurn();
-
-                System.Console.WriteLine();
             }
 
             if (this.Heroes.Count > 0 && this.Enemies.Count == 0)
@@ -148,21 +148,6 @@ namespace TerminalRPG.classes
             {
                 System.Console.WriteLine($"{i + 1}. {options[i].Name}");
             }
-        }
-
-        public int GetUserInput(string prompt = null)
-        {
-            string input = string.Empty;
-            int result;
-
-            if (!String.IsNullOrEmpty(prompt))
-            {
-                System.Console.WriteLine(prompt + ":");
-            }
-            input = System.Console.ReadLine();
-
-            int.TryParse(input, out result);
-            return result - 1;
         }
     }
 }

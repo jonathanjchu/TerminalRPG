@@ -50,6 +50,21 @@ namespace TerminalRPG.characters.heroes
             return dmg;
         }
 
+        public virtual void IncreaseStr(int amount)
+        {
+            this.Strength += amount;
+        }
+
+        public virtual void IncreaseInt(int amount)
+        {
+            this.Intelligence += amount;
+        }
+
+        public virtual void IncreaseDex(int amount)
+        {
+            this.Dexterity += amount;
+        }
+
         public abstract List<CharAction> GetOptions();
 
     }
