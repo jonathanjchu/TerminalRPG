@@ -20,7 +20,7 @@ namespace TerminalRPG.classes
             this._rng = new Random();
         }
 
-        public void BattleLoop()
+        public void Battle()
         {
             while (this.Enemies.Count > 0 && this.Heroes.Count > 0)
             {

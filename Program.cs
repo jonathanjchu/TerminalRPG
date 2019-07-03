@@ -4,6 +4,7 @@ using TerminalRPG.classes;
 using TerminalRPG.characters;
 using TerminalRPG.characters.enemies;
 using TerminalRPG.characters.heroes;
+using TerminalRPG.locations;
 
 namespace TerminalRPG
 {
@@ -18,15 +19,16 @@ namespace TerminalRPG
                 new Wizard()
             };
 
-            var enemies = new List<Enemy>()
+            ILocation location = new Lobby();
+
+            if (location.Enemies.Count > 0)
             {
-                new Spider(),
-                new Zombie()
-            };
+                var e = new Encounter(heroes, location.Enemies);
+                e.Battle();
+            }
 
-            var game = new Encounter(heroes, enemies);
+            
 
-            game.BattleLoop();
         }
     }
 }
