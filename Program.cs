@@ -22,6 +22,10 @@ namespace TerminalRPG
 
             ILocation location = new Lobby();
 
+            System.Console.WriteLine("You have arrived at the Doding Cojo!");
+            System.Console.WriteLine("Welcome and watch your step!");
+            System.Console.WriteLine();
+
             while (heroes.Exists(x => x.Health > 0) ||
                 location.NextLocations.Count == 0 && location.Enemies.Count == 0)
             {
@@ -29,6 +33,7 @@ namespace TerminalRPG
 
                 if (location.Enemies.Count > 0)
                 {
+                    System.Console.WriteLine();
                     var e = new Encounter(heroes, location.Enemies);
                     e.Battle();
                 }
@@ -41,7 +46,8 @@ namespace TerminalRPG
                 location = ex.Move();
             }
 
-            System.Console.WriteLine("Game Over...");
+            // System.Console.WriteLine("Game Over...");
+            System.Console.WriteLine("To be continued...");
         }
     }
 }

@@ -5,32 +5,32 @@ using TerminalRPG.interactions;
 
 namespace TerminalRPG.locations
 {
-    public class Lobby : Room
+    public class OldLounge : Room
     {
-
-        public Lobby()
+        public OldLounge()
         {
-            this.Name = "Lobby";
+            this.Name = "OldLounge";
 
             this.Interactions = new List<IInteractable>()
             {
-                new Sign("Welcome to MoonBucks! Come get an overpriced coffee!")
+
             };
 
             this.Enemies = new List<Enemy>()
             {
-                new Spider()
+
             };
 
             this.NextLocations = new List<ILocation>()
             {
-                new Hallway()
+                
             };
         }
 
         public override void EnterRoom()
         {
-            System.Console.WriteLine("You enter a large atrium with large windows on one side.");
+            System.Console.WriteLine("You now find yourself in a strange, decrepit room. It seems somewhat familiar, but you're not sure");
+            System.Console.WriteLine("The room is covered in dust and cobwebs. Furniture is ripped apart and strewn across the floor.");
         }
     }
 }

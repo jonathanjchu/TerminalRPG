@@ -10,32 +10,14 @@ namespace TerminalRPG.classes
         public Explore(ILocation room)
         {
             this.room = room;
+            this.room.EnterRoom();
         }
 
         public ILocation Move()
         {
 
-            GetOptions();
-            int choice = GetUserInput();
-
-            if (choice >= 0 && choice < room.NextLocations.Count)
-            {
-                return room.NextLocations[choice];
-            }
-            else
-            {
-                return this.room;
-            }
-        }
-
-        public void GetOptions()
-        {
-            for (var i = 0; i < room.NextLocations.Count; i++)
-            {
-                System.Console.WriteLine($"{i+1}. {room.NextLocations[i].Name}");
-            }
-        }
-
-        
+            room.GetOptions();
+            return room.MakeChoice();
+        }        
     }
 }

@@ -5,30 +5,30 @@ using TerminalRPG.interactions;
 
 namespace TerminalRPG.locations
 {
-    public class Hallway : Room
+    public class Classroom : Room
     {
-
-        public Hallway()
+        public Classroom()
         {
-            this.Name = "Hallway";
+            this.Name = "Classroom";
 
             this.Interactions = new List<IInteractable>();
 
             this.Enemies = new List<Enemy>()
             {
-                new Spider(),
-                new Zombie()
+                new Algos(),
+                new Algos()
             };
 
             this.NextLocations = new List<ILocation>()
             {
-                new Classroom()
+                new Kitchen(),
+                new Lounge()
             };
         }
 
         public override void EnterRoom()
         {
-            System.Console.WriteLine("A long hallway extends out into the darkness.");
+            System.Console.WriteLine("There are rows after rows of desks, but not much seems to be going on here.");
         }
     }
 }

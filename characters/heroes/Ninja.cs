@@ -23,6 +23,10 @@ namespace TerminalRPG.characters.heroes
                 dmg += 10;
             }
             target.Health -= dmg;
+
+            System.Console.WriteLine($"{this.Name} attacks {target.Name} and deals {dmg} damage");
+            System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
+
             return dmg;
         }
 
@@ -31,6 +35,11 @@ namespace TerminalRPG.characters.heroes
             var dmg = 5;
             target.Health -= dmg;
             this.Health += dmg;
+
+            System.Console.WriteLine($"{this.Name} steals {dmg} HP from {target.Name}");
+            System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
+            System.Console.WriteLine($"{this.Name} is now at {this.Health} HP");
+
             return dmg;
         }
 
@@ -39,8 +48,8 @@ namespace TerminalRPG.characters.heroes
             var options = new List<CharAction>();
 
             options.Add(new CharAction("Attack", x => this.Attack(x), true));
-            options.Add(new CharAction("Steal", x => this.Steal(x), false));
-            options.Add(new CharAction("Nothing", x => 0, true));
+            options.Add(new CharAction("Steal", x => this.Steal(x), true));
+            options.Add(new CharAction("Nothing", x => 0, null));
 
             return options;
         }   

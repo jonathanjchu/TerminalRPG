@@ -1,36 +1,37 @@
-using System;
 using System.Collections.Generic;
 using TerminalRPG.characters.enemies;
 using TerminalRPG.interactions;
 
 namespace TerminalRPG.locations
 {
-    public class Lobby : Room
+    public class Kitchen : Room
     {
-
-        public Lobby()
+        public Kitchen() : base()
         {
-            this.Name = "Lobby";
-
+            this.Name = "Kitchen";
+            
             this.Interactions = new List<IInteractable>()
             {
-                new Sign("Welcome to MoonBucks! Come get an overpriced coffee!")
+                new Sign("No more food, you pigs!")
             };
 
             this.Enemies = new List<Enemy>()
             {
-                new Spider()
+
             };
 
             this.NextLocations = new List<ILocation>()
             {
-                new Hallway()
+                // new Classroom(),
+                new Lounge()
             };
         }
 
         public override void EnterRoom()
         {
-            System.Console.WriteLine("You enter a large atrium with large windows on one side.");
+            System.Console.WriteLine("The kitchen stocked full of snacks and candy.");
         }
+
+        
     }
 }

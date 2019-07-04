@@ -22,13 +22,18 @@ namespace TerminalRPG.classes
 
         public void Battle()
         {
+            System.Console.WriteLine("Attacked by enemies!");
+            System.Console.WriteLine("Enemies:");
+            foreach (var e in this.Enemies)
+            {
+                System.Console.WriteLine(e.Name);
+            }
+            
             while (this.Enemies.Count > 0 && this.Heroes.Count > 0)
             {
-                System.Console.WriteLine("********************\n\n");
+                System.Console.WriteLine();
                 
                 HeroesTurn();
-
-                System.Console.WriteLine();
 
                 EnemiesTurn();
             }
@@ -41,6 +46,8 @@ namespace TerminalRPG.classes
             {
                 System.Console.WriteLine("You Lose...");
             }
+            
+            System.Console.WriteLine();
         }
 
         private void HeroesTurn()
@@ -57,20 +64,20 @@ namespace TerminalRPG.classes
                 {
                     System.Console.WriteLine("Choose target:");
 
-                    if (options[choice].isTargetEnemy)
+                    if (options[choice].isTargetEnemy.HasValue && options[choice].isTargetEnemy.Value)
                     {
                         ListEnemies();
                         var target = GetUserInput();
+                        System.Console.WriteLine("********************************");
+
+
                         if (target >= 0 && target < this.Enemies.Count)
                         {
                             var dmg = options[choice].Action(this.Enemies[target]);
 
-                            System.Console.WriteLine($"{hero.Name} attacks and deals {dmg} damage to {this.Enemies[target].Name}");
-                            System.Console.WriteLine($"{this.Enemies[target].Name} is at {this.Enemies[target].Health} HP");
-
                             if (this.Enemies[target].Health <= 0)
                             {
-                                System.Console.WriteLine($"{this.Enemies[target].Name} killed");
+                                System.Console.WriteLine($"{this.Enemies[target].Name} is killed");
                                 this.Enemies.RemoveAt(target);
                                 if (this.Enemies.Count == 0)
                                     return;
@@ -89,9 +96,6 @@ namespace TerminalRPG.classes
                         if (target >= 0 && target < this.Heroes.Count)
                         {
                             var heal = options[choice].Action(this.Heroes[target]);
-
-                            System.Console.WriteLine($"{hero.Name} heals {this.Heroes[target].Name} for {heal} HP");
-                            System.Console.WriteLine($"{this.Heroes[target].Name} is now at {this.Heroes[target].Health} HP");
                         }
                         else
                         {
@@ -103,6 +107,8 @@ namespace TerminalRPG.classes
                 {
                     System.Console.WriteLine($"{hero.Name} is confused and does nothing");
                 }
+                
+                System.Console.WriteLine();
             }
         }
 
@@ -112,17 +118,18 @@ namespace TerminalRPG.classes
             {
                 var target = this.Heroes[this._rng.Next(this.Heroes.Count)];
                 var dmg = enemy.Attack(target);
-                System.Console.WriteLine($"{enemy.Name} attacks and deals {dmg} damage to {target.Name}");
-                System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
 
                 if (target.Health <= 0)
                 {
-                    System.Console.WriteLine($"{target.Name} dies");
+                    System.Console.WriteLine();
+                    System.Console.WriteLine($"{target.Name} is killed!!!");
                     this.Heroes.Remove(target);
 
                     if (this.Heroes.Count == 0)
                         return;
                 }
+
+                System.Console.WriteLine();
             }
         }
 

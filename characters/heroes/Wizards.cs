@@ -20,6 +20,10 @@ namespace TerminalRPG.characters.heroes
             var dmg = this.Intelligence * 5;
             this.Health += dmg;
             target.Health -= dmg;
+
+            System.Console.WriteLine($"{this.Name} attacks {target.Name} and deals {dmg} damage");
+            System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
+
             return dmg;
         }
 
@@ -27,19 +31,22 @@ namespace TerminalRPG.characters.heroes
         {
             var heal = this.Intelligence * 10;
             target.Health += heal;
+
+            System.Console.WriteLine($"{this.Name} heals {target.Name} for {heal} HP");
+            System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
+
             return heal;
         }
 
 
         public override List<CharAction> GetOptions()
-        {          
+        {
             var options = new List<CharAction>();
 
             options.Add(new CharAction("Attack", x => this.Attack(x), true));
             options.Add(new CharAction("Heal", x => this.Heal(x), false));
-            options.Add(new CharAction("Nothing", x => 0, true));
 
             return options;
-        }   
+        }
     }
 }

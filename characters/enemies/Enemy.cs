@@ -17,8 +17,12 @@ namespace TerminalRPG.characters.enemies
 
         public virtual int Attack(ICharacter target)
         {
-            var dmg = this.Strength * 6;
+            var dmg = this.Strength * 5;
             target.Health -= dmg;
+
+            System.Console.WriteLine($"{this.Name} attacks {target.Name} and deals {dmg} damage");
+            System.Console.WriteLine($"{target.Name} is now at {target.Health} HP");
+
             return dmg;
         }
     }
